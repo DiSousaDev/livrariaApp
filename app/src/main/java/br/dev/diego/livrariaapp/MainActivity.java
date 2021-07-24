@@ -12,7 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    FloatingActionButton btnAdicionar;
+    FloatingActionButton btn_adicionar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +20,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerView);
-        btnAdicionar = findViewById(R.id.btnAdicionar);
+        btn_adicionar = findViewById(R.id.btn_adicionar);
 
-        btnAdicionar.setOnClickListener(new View.OnClickListener() {
+        btn_adicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AdicionarActivity.class);
                 startActivity(intent);
             }
         });
-
     }
+
+
+
 }

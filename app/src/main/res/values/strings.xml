@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">livrariaApp</string>
-    <string name="ctDescBotaoAdicionar">adicionar novo registro</string>
+    <string name="ctxDescBotaoAdicionar">adicionar novo registro</string>
+    <string name="hint_titulo">Titulo do livro</string>
+    <string name="hint_nome">Nome do Autor</string>
+    <string name="hint_pagina">Número de Páginas</string>
+
+    <!-- Botões -->
+    <string name="btn_salvar">Salvar</string>
 </resources>

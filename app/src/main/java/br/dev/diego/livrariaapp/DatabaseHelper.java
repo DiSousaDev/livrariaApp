@@ -1,10 +1,11 @@
 package br.dev.diego.livrariaapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -39,5 +40,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "DROP TABLE IF EXISTS " + NOME_TABELA;
         db.execSQL(query);
         onCreate(db);
+    }
+
+    public void cadastrarLivro(String titulo, String autor, Integer paginas) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUNA_TITULO, titulo);
+        cv.put(COLUNA_AUTOR, autor);
+        cv.put(COLUNA_PAGINAS, paginas);
+
+        long resultado = db.insert(NOME_TABELA, null, cv);
+
+        if(resultado == -1) {
+            Toast.makeText(context, "Erro ao salvar.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Livro adicionado!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
