@@ -2,6 +2,7 @@ package br.dev.diego.livrariaapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,11 +26,11 @@ public class CreateActivity extends AppCompatActivity {
 
         btn_salvar.setOnClickListener(v -> {
             DatabaseHelper banco = new DatabaseHelper(CreateActivity.this);
-            banco.cadastrarLivro(
-                    input_titulo.getText().toString().trim(),
-                    input_nome.getText().toString().trim(),
-                    Integer.valueOf(input_paginas.getText().toString().trim())
-            );
+            banco.cadastrarLivro(input_titulo.getText().toString().trim(), input_nome.getText().toString().trim(), Integer.valueOf(input_paginas.getText().toString().trim()));
+            // Atualizando activity
+            Intent intent = new Intent(CreateActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
 
     }

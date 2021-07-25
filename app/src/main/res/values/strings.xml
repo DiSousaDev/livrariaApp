@@ -4,8 +4,15 @@
     <string name="hint_titulo">Titulo do livro</string>
     <string name="hint_nome">Nome do Autor</string>
     <string name="hint_pagina">Número de Páginas</string>
+    <string name="my_menu_title">Limpar lista</string>
+    <string name="empty_message">Nenhum registro encontrado</string>
 
     <!-- Botões -->
     <string name="btn_salvar">Salvar</string>
     <string name="btn_alterar">Alterar</string>
+    <string name="btn_excluir">Excluir</string>
+
+    <!-- Content Description -->
+    <string name="cd_empty_message">Nenhum registro encontrado</string>
+
 </resources>

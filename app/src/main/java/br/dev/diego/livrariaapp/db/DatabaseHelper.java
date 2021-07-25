@@ -89,4 +89,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void removerRegistro(String row_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long resultado = db.delete(NOME_TABELA,"id=?", new String[]{row_id});
+
+        if(resultado == -1) {
+            Toast.makeText(context, "Erro ao excluir.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Registro Excluido!", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void removerTodosRegistros() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + NOME_TABELA);
+    }
+
 }

@@ -3,6 +3,8 @@ package br.dev.diego.livrariaapp;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +15,7 @@ import br.dev.diego.livrariaapp.db.DatabaseHelper;
 public class UpdateActivity extends AppCompatActivity {
 
     EditText input_titulo, input_nome, input_paginas;
-    Button btn_alterar;
+    Button btn_alterar, btn_excluir;
 
     private String id, titulo, autor, paginas;
 
@@ -26,6 +28,7 @@ public class UpdateActivity extends AppCompatActivity {
         input_nome = findViewById(R.id.input_nome2);
         input_paginas = findViewById(R.id.input_paginas2);
         btn_alterar = findViewById(R.id.btn_alterar);
+        btn_excluir = findViewById(R.id.btn_excluir);
 
         preEditar();
 
@@ -40,6 +43,10 @@ public class UpdateActivity extends AppCompatActivity {
             autor = input_nome.getText().toString().trim();
             paginas = input_paginas.getText().toString().trim();
             banco.atualizarDados(id, titulo, autor, paginas);
+        });
+
+        btn_excluir.setOnClickListener(v -> {
+            confirmarExclusao();
         });
 
     }
@@ -60,6 +67,27 @@ public class UpdateActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Nenhum livro encontrado.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void confirmarExclusao() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirma Exclusão?");
+        builder.setMessage("Você tem certeza que deseja esxluir este registro " + titulo + "?");
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DatabaseHelper banco = new DatabaseHelper(UpdateActivity.this);
+                banco.removerRegistro(id);
+                finish();
+            }
+        });
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
     }
 
 }

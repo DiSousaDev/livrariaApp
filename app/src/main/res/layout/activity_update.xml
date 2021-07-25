@@ -11,7 +11,7 @@
         android:id="@+id/input_titulo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="@string/hint_titulo"
         android:importantForAutofill="no"
@@ -50,10 +50,22 @@
         android:id="@+id/btn_alterar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="120dp"
         android:text="@string/btn_alterar"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_paginas2" />
+
+    <Button
+        android:id="@+id/btn_excluir"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_excluir"
+        android:textSize="20sp"
+        app:backgroundTint="#E66E6E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_alterar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
