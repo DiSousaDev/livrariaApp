@@ -1,9 +1,12 @@
-package br.dev.diego.livrariaapp;
+package br.dev.diego.livrariaapp.db;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,13 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import br.dev.diego.livrariaapp.R;
+import br.dev.diego.livrariaapp.UpdateActivity;
+
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
+    private Activity activity;
     private ArrayList id_livro, titulo_livro, nome_autor, paginas;
 
-    public CustomAdapter(Context context, ArrayList id_livro, ArrayList titulo_livro, ArrayList nome_autor, ArrayList paginas) {
+    public CustomAdapter(Context context, Activity activity, ArrayList id_livro, ArrayList titulo_livro, ArrayList nome_autor, ArrayList paginas) {
         this.context = context;
+        this.activity = activity;
         this.id_livro = id_livro;
         this.titulo_livro = titulo_livro;
         this.nome_autor = nome_autor;
@@ -38,6 +46,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.titulo_livro_txt.setText(String.valueOf(this.titulo_livro.get(position)));
         holder.nome_autor_txt.setText(String.valueOf(this.nome_autor.get(position)));
         holder.paginas_txt.setText(String.valueOf(this.paginas.get(position)));
+        holder.layoutPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("id", String.valueOf(id_livro.get(position)));
+                intent.putExtra("titulo", String.valueOf(titulo_livro.get(position)));
+                intent.putExtra("autor", String.valueOf(nome_autor.get(position)));
+                intent.putExtra("paginas", String.valueOf(paginas.get(position)));
+                activity.startActivityForResult(intent, 1);
+            }
+        });
     }
 
     @Override
@@ -48,6 +67,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView id_livro_txt, titulo_livro_txt, nome_autor_txt, paginas_txt;
+        LinearLayout layoutPrincipal;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -55,6 +75,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             titulo_livro_txt = itemView.findViewById(R.id.titulo_livro_txt);
             nome_autor_txt = itemView.findViewById(R.id.nome_autor_txt);
             paginas_txt = itemView.findViewById(R.id.paginas_txt);
+            layoutPrincipal = itemView.findViewById(R.id.layoutPrincipal);
         }
     }
 }

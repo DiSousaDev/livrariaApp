@@ -7,4 +7,5 @@
 
     <!-- Botões -->
     <string name="btn_salvar">Salvar</string>
+    <string name="btn_alterar">Alterar</string>
 </resources>

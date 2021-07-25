@@ -1,5 +1,6 @@
 package br.dev.diego.livrariaapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,9 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+
+import br.dev.diego.livrariaapp.db.CustomAdapter;
+import br.dev.diego.livrariaapp.db.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,12 +35,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         btn_adicionar = findViewById(R.id.btn_adicionar);
 
-        btn_adicionar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AdicionarActivity.class);
-                startActivity(intent);
-            }
+        btn_adicionar.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CreateActivity.class);
+            startActivity(intent);
         });
 
         banco = new DatabaseHelper(MainActivity.this);
@@ -47,10 +48,18 @@ public class MainActivity extends AppCompatActivity {
 
         buscarRegistros();
 
-        customAdapter = new CustomAdapter(MainActivity.this, id_livro, titulo_livro, nome_autor, paginas);
+        customAdapter = new CustomAdapter(MainActivity.this, this, id_livro, titulo_livro, nome_autor, paginas);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1) {
+            recreate();
+        }
     }
 
     public void buscarRegistros() {

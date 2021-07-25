@@ -1,4 +1,4 @@
-package br.dev.diego.livrariaapp;
+package br.dev.diego.livrariaapp.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -70,4 +70,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    public void atualizarDados(String row_id, String titulo, String autor, String paginas) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUNA_TITULO, titulo);
+        cv.put(COLUNA_AUTOR, autor);
+        cv.put(COLUNA_PAGINAS, paginas);
+
+        long resultado = db.update(NOME_TABELA, cv, "id=?", new String[]{row_id});
+
+        if(resultado == -1) {
+            Toast.makeText(context, "Erro ao atualizar.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Livro atualizado!", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 }

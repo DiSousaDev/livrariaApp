@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdicionarActivity"
+    tools:context=".CreateActivity"
     android:padding="30dp">
 
     <EditText
-        android:id="@+id/input_titulo"
+        android:id="@+id/input_titulo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/input_nome"
+        android:id="@+id/input_nome2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -31,10 +31,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_titulo" />
+        app:layout_constraintTop_toBottomOf="@+id/input_titulo2" />
 
     <EditText
-        android:id="@+id/input_paginas"
+        android:id="@+id/input_paginas2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -44,16 +44,16 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_nome" />
+        app:layout_constraintTop_toBottomOf="@+id/input_nome2" />
 
     <Button
-        android:id="@+id/btn_salvar"
+        android:id="@+id/btn_alterar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
-        android:text="@string/btn_salvar"
+        android:text="@string/btn_alterar"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_paginas" />
+        app:layout_constraintTop_toBottomOf="@+id/input_paginas2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
